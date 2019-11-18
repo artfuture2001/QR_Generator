@@ -16,3 +16,9 @@ while True:
     else:
         print("Wrong input, try again")
         continue
+        """
+        TODO
+        1.Add transparecy option
+        2.More intuitive interface
+        3.GUI???
+        """
