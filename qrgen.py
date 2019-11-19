@@ -4,20 +4,6 @@ import os
 from PIL import Image
 
 
-def Transparecy(file_stored):
-    img = Image.open(file_stored)
-    img = img.convert("RGBA")
-    pixels = img.getdata()
-    transparent_pixels = []
-    for pixel in pixels:
-        if pixel[0] == 255 and pixel[1] == 255 and pixel[2] == 255:
-            transparent_pixels.append((255, 255, 255, 0))
-    else:
-        transparent_pixels.append(pixel)
-    img.putdata(pixels)
-    img.save(file_stored)
-
-
 def Transparent(image_directory):
     img = Image.open(image_directory)
     img = img.convert("RGBA")
