@@ -70,7 +70,8 @@ while True:
         continue
         """
         TODO
-        1.Add transparecy option
-        2.More intuitive interface
-        3.GUI???
+        1.Add transparecy option (DONE)
+        2.More intuitive interface (DONE)
+        3.EXE
+        4.GUI???
         """
