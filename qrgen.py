@@ -1,16 +1,68 @@
 #!/usr/bin/python3
 import qrcode
+import os
+from PIL import Image
 
+
+def Transparecy(file_stored):
+    img = Image.open(file_stored)
+    img = img.convert("RGBA")
+    pixels = img.getdata()
+    transparent_pixels = []
+    for pixel in pixels:
+        if pixel[0] == 255 and pixel[1] == 255 and pixel[2] == 255:
+            transparent_pixels.append((255, 255, 255, 0))
+    else:
+        transparent_pixels.append(pixel)
+    img.putdata(pixels)
+    img.save(file_stored)
+
+
+def Transparent(image_directory):
+    img = Image.open(image_directory)
+    img = img.convert("RGBA")
+    datas = img.getdata()
+    newData = []
+    for item in datas:
+        if item[0] == 255 and item[1] == 255 and item[2] == 255:
+            newData.append((255, 255, 255, 0))
+        else:
+            newData.append(item)
+    img.putdata(newData)
+    img.save(image_directory, "PNG")
+
+
+print("=====================QR CODE Generator=====================")
 while True:
-    user_input = input("Create qrcode? ")
+    user_input = input("Do you want to create QR Code (Y/N): ")
     if user_input == "Y":
-        text = input("What will be in qr code? ")
-        store = input("Name file or add path to file? ")
-        if store == " ":
+        text = input("Info in QR Code: ")
+        store = input(
+            "Enter file name (example: qrcode.png) or write path to future file: ")
+        if store == '':
             store = "qrcode.png"
         img = qrcode.make(text)
         img.save(store)
+        if os.path.isfile(store):
+            print(f"Your QR code ({store}) succesfully created!)")
+        else:
+            print("Something gone wrong, try again")
+            continue
+        user_transparent = input(
+            "Do you want to make your QR code transparent? (Y to confirm): ")
+        if user_transparent == "Y":
+            Transparent(store)
+        else:
+            print("No transparecy, ok!")
 
+        user_open = input(
+            "Do you want to open your newly created QR code? (Y to confirm): ")
+        if user_open == "Y":
+            qrimg = Image.open(store)
+            qrimg.show()
+        else:
+            print("Do not open, got it!")
+            continue
     elif user_input == "N":
         break
     else:
