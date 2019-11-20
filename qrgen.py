@@ -58,6 +58,6 @@ while True:
         TODO
         1.Add transparecy option (DONE)
         2.More intuitive interface (DONE)
-        3.EXE
+        3.EXE (DONE)
         4.GUI???
         """
